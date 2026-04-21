@@ -24,7 +24,8 @@ This project is an end-to-end Data Engineering and Analytics pipeline that proce
 ### 3. Data Analysis (Advanced SQL)
 The `portfolio_queries.sql` file contains complex queries designed to answer specific strategic questions:
 - **Strategic Shift Analysis (CTEs & `NULLIF`):** Analyzed the shift in US bombing strategy over Japan in 1945, calculating the percentage of incendiary vs. high-explosive bombs month by month while preventing divide-by-zero errors.
-- **Time-Series Escalation (Window Functions):** Calculated the cumulative running total (`SUM() OVER(ORDER BY...)`) of the British Royal Air Force's war effort.
+- **Time-Series Escalation (Window Functions):** Calculated the cumulative running total (`SUM() OVER(ORDER BY...)`) of the war effort. 
+    * **Update:** While the original objective was to analyze the British Royal Air Force (RAF), the focus was shifted to the **USAAF (USA)**. This adjustment was necessary as the source dataset contained significant gaps for RAF records between 1942 and 1945. Switching to USA data allowed for a continuous and statistically significant demonstration of the military escalation logic.
 - **Shifting Fronts (Partitioned Ranking):** Identified the primary target country year by year by solving the "Top 1 per Group" problem using `ROW_NUMBER() OVER(PARTITION BY...)`.
 
 ## Repository Structure
