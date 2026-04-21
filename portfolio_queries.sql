@@ -20,21 +20,25 @@ SELECT
 FROM MonthlyStats
 ORDER BY mission_month;
 
--- 2. TIME-SERIES: Cumulative Trend (Running Total) of the British War Effort
-WITH MonthlyRAF AS (
+-- 2. TIME-SERIES: Cumulative Trend (Running Total) of the USA War Effort
+-- NOTE: The focus was shifted from 'GREAT BRITAIN' to 'USA' because the source 
+-- dataset contains significant gaps for RAF missions between 1942 and 1945. 
+-- Using USA data provides a consistent trend for demonstrating Window Functions.
+
+WITH MonthlyUSA AS (
     SELECT 
         TO_CHAR(mission_date, 'YYYY-MM') AS mission_month,
         SUM(total_weight_tons) AS monthly_tons
     FROM ww2_missions
-    WHERE country = 'GREAT BRITAIN' AND mission_date IS NOT NULL
+    WHERE country = 'USA' AND mission_date IS NOT NULL
     GROUP BY TO_CHAR(mission_date, 'YYYY-MM')
 )
 SELECT 
     mission_month,
     ROUND(CAST(monthly_tons AS numeric), 2) AS tons_this_month,
-    -- Calculate running total using Window Function
+    -- Calculate running total using Window Function to show war effort escalation
     ROUND(CAST(SUM(monthly_tons) OVER (ORDER BY mission_month) AS numeric), 2) AS cumulative_tons_dropped
-FROM MonthlyRAF
+FROM MonthlyUSA
 ORDER BY mission_month;
 
 -- 3. PARTITIONED RANKING: Primary Target (Top 1) Year by Year
