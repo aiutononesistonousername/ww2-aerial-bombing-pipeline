@@ -1,5 +1,17 @@
 # WWII Aerial Bombing Data Pipeline & Analytics
 
+## Key Findings
+
+- **March 1945 strategic pivot:** USAAF payloads over Japan shift abruptly from
+  high-explosive precision bombing to large-scale incendiary missions.
+- **Near-exponential escalation:** cumulative US bombing effort accelerates sharply
+  from 1943, peaking in 1945.
+- **Shifting fronts:** the primary target moves from Europe (Germany/Italy, 1944)
+  to the Pacific Theater (Japan, 1945).
+- **Data quality:** 475 records where individual bomb weights did not match the
+  official totals were quarantined into a separate exception report instead of
+  being silently dropped.
+
 ## Project Overview
 This project is an end-to-end Data Engineering and Analytics pipeline that processes historical World War II aerial bombing data (THOR dataset). The objective is to transform raw, noisy data into a clean, relational database to extract military strategic insights using advanced SQL.
 
